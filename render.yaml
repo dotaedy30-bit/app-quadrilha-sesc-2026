@@ -1,0 +1,9 @@
+services:
+  - type: web
+    name: quadrilha-sesc-2026
+    runtime: static
+    buildCommand: npm ci && npm run build
+    staticPublishPath: ./dist
+    envVars:
+      - key: VITE_BASE_PATH
+        value: /

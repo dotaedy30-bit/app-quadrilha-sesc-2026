@@ -1,0 +1,38 @@
+{
+  "name": "quadrilha-sesc-2026",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "audio-manifest": "node scripts/generate-audio-manifest.mjs",
+    "predev": "npm run audio-manifest",
+    "dev": "vite --host 0.0.0.0",
+    "prebuild": "npm run audio-manifest",
+    "build": "tsc -b && vite build",
+    "typecheck": "tsc -b --pretty false",
+    "lint": "eslint .",
+    "prepreview": "npm run audio-manifest",
+    "preview": "vite preview --host 0.0.0.0"
+  },
+  "dependencies": {
+    "@vite-pwa/assets-generator": "^1.0.0",
+    "react": "^19.1.0",
+    "react-dom": "^19.1.0",
+    "vite-plugin-pwa": "^1.0.1",
+    "workbox-range-requests": "^7.3.0"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.30.0",
+    "@types/react": "^19.1.8",
+    "@types/react-dom": "^19.1.6",
+    "@types/node": "^24.0.13",
+    "@vitejs/plugin-react": "^4.6.0",
+    "eslint": "^9.30.0",
+    "eslint-plugin-react-hooks": "^5.2.0",
+    "eslint-plugin-react-refresh": "^0.4.20",
+    "globals": "^16.3.0",
+    "typescript": "~5.8.3",
+    "typescript-eslint": "^8.35.1",
+    "vite": "^7.0.4"
+  }
+}
