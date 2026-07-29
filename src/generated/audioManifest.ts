@@ -2,23 +2,31 @@
 export const audioManifest: Record<string, string | null> = {
   "apresentacao-professor": null,
   "entrada": "entrada-da-quadrilha.mpeg",
-  "cumprimentacao": "comprimentacao-ao-publico.mpeg",
+  "cumprimentacao": null,
   "me-de-a-mao": "me-de-a-sua-mao.mp3",
-  "rei-rainha": null,
+  "rei-rainha": "apresntacao-rei-e-rainha.mpeg",
   "quadrilhao": "quadrilhao.mpeg",
   "xote-noivos": "xote-dos-noivos.mpeg",
   "riacho-navio": "riacho-do-navio.mpeg",
-  "apresentacao-noivos": null,
-  "amor-amor": "amor-amor.mp3"
+  "apresentacao-noivos": "presentacao-dos-noivos.mpeg",
+  "amor-amor": "amor-amor.mp3",
+  "trem-maluco": "trem-maluco.mpeg",
+  "despedida": null,
+  "diretao-001": "diretao-001.mpeg",
+  "diretao-002": "diretao-002.mpeg"
 }
 export const shotEffectFile: string | null = "efeito-de-tiro.mpeg"
 export const discoveredAudioFiles = [
   "amor-amor.mp3",
-  "comprimentacao-ao-publico.mpeg",
+  "apresntacao-rei-e-rainha.mpeg",
+  "diretao-001.mpeg",
+  "diretao-002.mpeg",
   "efeito-de-tiro.mpeg",
   "entrada-da-quadrilha.mpeg",
   "me-de-a-sua-mao.mp3",
+  "presentacao-dos-noivos.mpeg",
   "quadrilhao.mpeg",
   "riacho-do-navio.mpeg",
+  "trem-maluco.mpeg",
   "xote-dos-noivos.mpeg"
 ] as const

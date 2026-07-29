@@ -10,7 +10,7 @@ export function TrackCard({ track, state, playing, setAudioRef, onToggle, onRese
   const progress = state.duration ? Math.min(100, (state.position / state.duration) * 100) : 0
   return <article id={`track-${track.id}`} className={`track-card ${playing ? 'active' : ''} ${state.completed ? 'completed' : ''} ${!available ? 'unavailable' : ''}`} style={{ '--accent': track.color, '--accent-2': track.colorSecondary } as React.CSSProperties}>
     {track.audioPath && <audio ref={setAudioRef} src={track.audioPath} preload="metadata" onLoadedMetadata={onLoaded} onTimeUpdate={onTime} onEnded={onEnded} onError={onError}/>} 
-    <div className="track-heading"><span className="track-number">{track.number.toString().padStart(2, '0')}</span><div><p>FAIXA {track.number}</p><h2>{track.name}</h2>{track.description && <small>{track.description}</small>}</div>{state.completed && <span className="done-mark" aria-label="Concluída">✓</span>}</div>
+    <div className="track-heading"><span className="track-number">{track.number.toString().padStart(2, '0')}</span><div><p>FAIXA {track.number}</p><h2>{track.name}</h2></div>{state.completed && <span className="done-mark" aria-label="Concluída">✓</span>}</div>
     <div className="record-area">
       <button className={`vinyl ${playing ? 'spinning' : ''}`} disabled={!available || state.error} onClick={onToggle} aria-label={`${playing ? 'Pausar' : 'Tocar'} ${track.name}`}>
         <span className="vinyl-grooves"/><span className="vinyl-label"><span className="label-number">{track.number}</span><span className="play-center">{playing ? <PauseIcon/> : <PlayIcon/>}</span></span>

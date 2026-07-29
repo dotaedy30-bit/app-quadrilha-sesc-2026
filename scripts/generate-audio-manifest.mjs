@@ -15,8 +15,12 @@ const definitions = [
   ['quadrilhao', 'Quadrilhão', (n) => has(n, 'quadrilhao')],
   ['xote-noivos', 'Xote dos Noivos', (n) => has(n, 'xote', 'noivos')],
   ['riacho-navio', 'Riacho do Navio', (n) => has(n, 'riacho', 'navio')],
-  ['apresentacao-noivos', 'Apresentação dos Noivos', (n) => has(n, 'apresentacao', 'noivos')],
+  ['apresentacao-noivos', 'Apresentação dos Noivos', (n) => has(n, 'apresentacao', 'noivos') || has(n, 'resentacao', 'noivos')],
   ['amor-amor', 'Amor a Amor', (n) => has(n, 'amor')],
+  ['trem-maluco', 'Trem Maluco', (n) => has(n, 'trem', 'maluco')],
+  ['despedida', 'Despedida', (n) => has(n, 'despedida')],
+  ['diretao-001', 'Diretão 001', (n) => has(n, 'diretao', '001')],
+  ['diretao-002', 'Diretão 002', (n) => has(n, 'diretao', '002')],
 ]
 const files = (await readdir(audioDir, { withFileTypes: true })).filter((e) => e.isFile() && extensions.has(extname(e.name).toLowerCase())).map((e) => e.name).sort((a, b) => a.localeCompare(b, 'pt-BR'))
 const shotCandidates = files.filter((file) => has(normalize(file), 'tiro') || has(normalize(file), 'disparo'))
