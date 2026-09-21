@@ -19,9 +19,9 @@ export const appConfig = {
     maskable512: 'icons/app-icon-maskable-512.png',
   },
   colors: {
-    theme: '#44151b',
-    background: '#1c090c',
-    gold: '#f3b33e',
-    wine: '#57171c',
+    theme: '#005ca8',
+    background: '#edf8ff',
+    gold: '#29a9e8',
+    wine: '#005ca8',
   },
 } as const

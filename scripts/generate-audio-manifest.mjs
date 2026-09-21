@@ -21,6 +21,9 @@ const definitions = [
   ['despedida', 'Despedida', (n) => has(n, 'despedida')],
   ['diretao-001', 'Diretão 001', (n) => has(n, 'diretao', '001')],
   ['diretao-002', 'Diretão 002', (n) => has(n, 'diretao', '002')],
+  ['diretao-temporario-001', 'Diretão Temporário', (n) => has(n, 'diretao', 'temporari') && !has(n, '02') && !has(n, '002')],
+  ['diretao-temporario-002', 'Diretão Temporário 02', (n) => has(n, 'diretao', 'temporari') && (has(n, '02') || has(n, '002'))],
+  ['explode-coracao', 'Explode Coração', (n) => has(n, 'explode', 'coracao')],
 ]
 const files = (await readdir(audioDir, { withFileTypes: true })).filter((e) => e.isFile() && extensions.has(extname(e.name).toLowerCase())).map((e) => e.name).sort((a, b) => a.localeCompare(b, 'pt-BR'))
 const shotCandidates = files.filter((file) => has(normalize(file), 'tiro') || has(normalize(file), 'disparo'))
