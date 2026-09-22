@@ -19,7 +19,7 @@ export function TrackCard({ track, state, playing, setAudioRef, onSeek, onToggle
       const p = Math.max(0, Math.min((ev.clientX - rect.left) / rect.width, 1))
       onSeek(track.id, p)
     }
-    update(e)
+    update(e.nativeEvent)
     bar.setPointerCapture(e.pointerId)
     const onMove = (ev: PointerEvent) => update(ev)
     const onUp = () => { setIsDragging(false); bar.removeEventListener('pointermove', onMove); bar.removeEventListener('pointerup', onUp) }
