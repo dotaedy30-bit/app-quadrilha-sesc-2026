@@ -81,7 +81,17 @@ export default function App() {
 
   const patchState = useCallback((id: string, patch: Partial<TrackState>) => setStates(previous => ({ ...previous, [id]: { ...previous[id], ...patch } })), [])
 
-  const play = async (id: string) => {
+  const seekTo = useCallback((id: string, percent: number) => {
+  const audio = audioRefs.current[id]
+  if (!audio) return
+  const duration = audio.duration
+  if (!Number.isFinite(duration) || duration <= 0) return
+  const newTime = Math.max(0, Math.min(percent * duration, duration))
+  audio.currentTime = newTime
+  patchState(id, { position: newTime })
+}, [patchState])
+
+const play = async (id: string) => {
     if (diretaoTimerRef.current !== null && diretaoTimerTrackRef.current !== id) {
       clearTimeout(diretaoTimerRef.current)
       diretaoTimerRef.current = null
@@ -202,7 +212,7 @@ export default function App() {
     <main>
       <section className="music-spa" aria-label={headerTitle}>
         <div className="section-title"><div><span>{sectionEyebrow}</span><h2>{sectionTitle}</h2></div><strong>{countLabel}</strong></div>
-        <div className="playlist">{tracks.map(track => <TrackCard key={track.id} track={track} state={states[track.id]} playing={active === track.id} setAudioRef={(node) => { audioRefs.current[track.id] = node }} onToggle={() => void play(track.id)} onReset={() => reset(track.id)} onLoaded={() => { const audio = audioRefs.current[track.id]; if (audio) { if (states[track.id].position) audio.currentTime = Math.min(states[track.id].position, audio.duration || Infinity); patchState(track.id, { duration: audio.duration, loading: false }) } }} onTime={() => { const audio = audioRefs.current[track.id]; if (audio) patchState(track.id, { position: audio.currentTime, duration: audio.duration || states[track.id].duration }) }} onEnded={() => void ended(track.id, tracks)} onError={() => patchState(track.id, { error: true, loading: false })} />)}</div>
+        <div className="playlist">{tracks.map(track => <TrackCard key={track.id} track={track} state={states[track.id]} playing={active === track.id} setAudioRef={(node) => { audioRefs.current[track.id] = node }} onSeek={(id, p) => seekTo(id, p)} onToggle={() => void play(track.id)} onReset={() => reset(track.id)} onLoaded={() => { const audio = audioRefs.current[track.id]; if (audio) { if (states[track.id].position) audio.currentTime = Math.min(states[track.id].position, audio.duration || Infinity); patchState(track.id, { duration: audio.duration, loading: false }) } }} onTime={() => { const audio = audioRefs.current[track.id]; if (audio) patchState(track.id, { position: audio.currentTime, duration: audio.duration || states[track.id].duration }) }} onEnded={() => void ended(track.id, tracks)} onError={() => patchState(track.id, { error: true, loading: false })} />)}</div>
         {finished && <div className="final-message">✦ {training ? 'Sequência de treino concluída' : 'Diretão concluído'} ✦</div>}
       </section>
       <footer><div className="footer-record"/><p>{appConfig.name}<br/><span>{appConfig.professor}</span></p><small>{appConfig.credit}</small></footer>
